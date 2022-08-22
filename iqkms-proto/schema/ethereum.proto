@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package iqkms.ethereum;
+
+// Ethereum transaction signer service.
+service TxSigner {
+  // Request that a transaction be signed.
+  rpc SignTx (SignTxRequest) returns (SignTxResponse) {}
+}
+
+// Request to sign a transaction.
+message SignTxRequest {
+  // Body of the transaction to be signed.
+  bytes tx_body = 1;
+
+  // Private key's Ethereum address (`0x` followed by 40 hex chars).
+  string address = 2;
+}
+
+// Response from a transaction signing request.
+message SignTxResponse {
+  /// Signature over the transaction body.
+  bytes signature = 1;
+}

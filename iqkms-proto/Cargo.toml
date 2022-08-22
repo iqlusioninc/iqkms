@@ -1,0 +1,11 @@
+[package]
+name = "iqkms-proto"
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+prost = "0.11"
+tonic = "0.8"
+
+[build-dependencies]
+tonic-build = "0.8"

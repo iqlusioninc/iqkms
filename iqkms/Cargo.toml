@@ -1,0 +1,11 @@
+[package]
+name = "iqkms"
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+proto = { package = "iqkms-proto", version = "0", path = "../iqkms-proto" }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
+tonic = "0.8"

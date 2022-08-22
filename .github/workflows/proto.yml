@@ -1,0 +1,37 @@
+name: proto
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/proto.yml"
+      - "iqkms-proto"
+  push:
+    branches:
+      - main
+
+defaults:
+  run:
+    working-directory: iqkms-proto
+
+env:
+  CARGO_INCREMENTAL: 0
+  RUSTFLAGS: "-Dwarnings"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust:
+          - 1.63.0 # MSRV
+          - stable
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+          override: true
+          profile: minimal
+      - run: sudo apt-get install protobuf-compiler
+      - run: cargo test
+      - run: cargo test --release
