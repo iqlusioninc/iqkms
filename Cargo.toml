@@ -1,0 +1,9 @@
+[workspace]
+resolver = "2"
+members = [
+    "iqkms",
+    "iqkms-ethereum",
+    "iqkms-proto",
+    "iqkms-signing",
+    "iqkmsd"
+]

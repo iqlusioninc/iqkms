@@ -1,0 +1,10 @@
+[package]
+name = "iqkms-ethereum"
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+proto = { package = "iqkms-proto", version = "0", path = "../iqkms-proto" }
+signing = { package = "iqkms-signing", version = "0", features = ["ethereum"], path = "../iqkms-signing" }
+
+tonic = "0.8"
