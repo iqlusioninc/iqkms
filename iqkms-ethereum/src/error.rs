@@ -2,6 +2,9 @@
 
 use std::fmt;
 
+/// `Result` type with the `iqkms-ethereum` crate's [`Error`] type.
+pub type Result<T> = std::result::Result<T, Error>;
+
 /// Error type.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Error {
@@ -10,6 +13,9 @@ pub enum Error {
         /// Requested address.
         addr: String,
     },
+
+    /// Malformed Keccak256 digest.
+    DigestMalformed,
 
     /// Signing key not found.
     SigningKeyNotFound {
@@ -29,6 +35,7 @@ impl Error {
     fn code(&self) -> tonic::Code {
         match self {
             Error::AddressMalformed { .. } => tonic::Code::InvalidArgument,
+            Error::DigestMalformed { .. } => tonic::Code::InvalidArgument,
             Error::SigningKeyNotFound { .. } => tonic::Code::NotFound,
             Error::SigningFailed { .. } => tonic::Code::Internal,
         }
@@ -41,6 +48,7 @@ impl fmt::Display for Error {
             Error::AddressMalformed { addr } => {
                 write!(f, "Ethereum address malformed: \"{}\"", addr)
             }
+            Error::DigestMalformed => write!(f, "Keccak256 digest malformed"),
             Error::SigningKeyNotFound { addr } => write!(f, "signing key not found: \"{}\"", addr),
             Error::SigningFailed { reason } => f.write_str(reason),
         }
@@ -57,6 +65,21 @@ impl From<signing::Error> for Error {
     fn from(_: signing::Error) -> Error {
         Error::SigningFailed {
             reason: "signing operation failed".to_owned(),
+        }
+    }
+}
+
+impl From<signing::signature::Error> for Error {
+    fn from(_: signing::signature::Error) -> Error {
+        signing::Error.into()
+    }
+}
+
+impl From<types::Error> for Error {
+    fn from(_: types::Error) -> Error {
+        // TODO(tarcieri): non-bogus implementation
+        Error::AddressMalformed {
+            addr: "0xdeadbeef".to_owned(),
         }
     }
 }

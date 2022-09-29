@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - ".github/workflows/proto.yml"
-      - "iqkms-proto"
+      - "iqkms-proto/**"
   push:
     branches:
       - main

@@ -4,7 +4,9 @@ on:
   pull_request:
     paths:
       - ".github/workflows/signing.yml"
-      - "iqkms-signing"
+      - "iq-crypto/**"
+      - "iqkms-signing/**"
+      - "iqkms-types/**"
   push:
     branches:
       - main
@@ -32,6 +34,7 @@ jobs:
           toolchain: ${{ matrix.rust }}
           override: true
           profile: minimal
-      - run: cargo test --no-default-features
-      - run: cargo test
-      - run: cargo test --release
+      # TODO(tarcieri): - run: cargo test
+      - run: cargo test --all-features
+      # TODO(tarcieri): - run: cargo test --release
+      - run: cargo test --all-features --release

@@ -3,14 +3,18 @@ name = "iqkms-signing"
 version = "0.0.0"
 edition = "2021"
 
-[dependencies]
-signatory = { version = "0.26", features = ["secp256k1"] }
-rand_core = { version = "0.6", features = ["getrandom"] }
+[dependencies.crypto]
+package = "iq-crypto"
+version = "0"
+features = ["ecdsa", "getrandom", "sha2", "std"]
+path = "../iq-crypto"
 
 # optional dependencies
+[dependencies]
+types = { package = "iqkms-types", version = "0", optional = true, path = "../iqkms-types" }
+
 base16ct = { version = "0.1", optional = true, features = ["alloc"] }
-sec1 = { version = "0.3", optional = true, default-features = false, features = ["point"] }
-sha3 = { version = "0.10", optional = true, default-features = false }
 
 [features]
-ethereum = ["base16ct", "sec1", "sha3"]
+ethereum = ["base16ct", "crypto/sha3", "secp256k1", "types/ethereum"]
+secp256k1 = ["crypto/secp256k1"]

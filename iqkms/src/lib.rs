@@ -1,26 +1,19 @@
 //! iqkms client library
 
+mod error;
+
+#[cfg(feature = "ethereum")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ethereum")))]
+pub mod ethereum;
+
+pub use crate::error::{Error, ErrorCode, Result};
 pub use proto;
+pub use tokio;
+pub use tonic;
 
-#[cfg(test)]
-mod tests {
-    use super::proto::ethereum::{tx_signer_client::TxSignerClient, SignTxRequest};
-    use tonic::Request;
+#[cfg(feature = "ethereum")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ethereum")))]
+pub use types;
 
-    #[tokio::test]
-    async fn it_works() -> Result<(), Box<dyn std::error::Error>> {
-        let mut client = TxSignerClient::connect("http://[::1]:50051").await?;
-
-        // TODO(tarcieri): transaction body
-        let tx_body = vec![];
-
-        // TODO(tarcieri): real signing key address
-        let address = "0x27b1fdb04752bbc536007a920d24acb045561c26".to_owned();
-
-        let request = Request::new(SignTxRequest { tx_body, address });
-        let response = client.sign_tx(request).await?;
-
-        println!("RESPONSE={:?}", response);
-        Ok(())
-    }
-}
+/// Boxed `Error` trait object.
+pub type StdError = Box<dyn std::error::Error + Send + Sync + 'static>;
