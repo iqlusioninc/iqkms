@@ -1,0 +1,39 @@
+[package]
+name = "iq-crypto"
+version = "0.0.0"
+edition = "2021"
+rust-version = "1.63"
+
+[dependencies]
+digest = "0.10"
+generic-array = "0.14"
+rand_core = "0.6.4"
+
+# optional dependencies
+elliptic-curve = { version = "0.12", optional = true }
+ecdsa = { version = "0.14", optional = true }
+k256 = { version = "0.11.6", optional = true }
+sec1 = { version = "0.3", optional = true, features = ["point"] }
+sha2 = { version = "0.10", optional = true }
+sha3 = { version = "0.10", optional = true }
+signature = { version = ">=1.6.3, <1.7", optional = true, features = ["hazmat-preview"] }
+pkcs8 = { version = "0.9", optional = true }
+
+[features]
+alloc = [
+    "elliptic-curve?/alloc",
+    "ecdsa?/alloc",
+    "sec1?/alloc",
+]
+std = [
+    "alloc",
+    "ecdsa?/std",
+    "k256?/std",
+    "sec1?/std",
+    "signature?/std"
+]
+
+ecdsa = ["dep:ecdsa", "elliptic-curve", "signature"]
+elliptic-curve = ["dep:elliptic-curve", "dep:sec1"]
+getrandom = ["rand_core/getrandom"]
+secp256k1 = ["alloc", "ecdsa",  "pkcs8", "sha3", "signature", "dep:k256"]

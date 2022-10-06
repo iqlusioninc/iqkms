@@ -5,6 +5,9 @@ edition = "2021"
 
 [dependencies]
 proto = { package = "iqkms-proto", version = "0", path = "../iqkms-proto" }
-signing = { package = "iqkms-signing", version = "0", features = ["ethereum"], path = "../iqkms-signing" }
+signing = { package = "iqkms-signing", version = "0", path = "../iqkms-signing", features = ["ethereum"] }
+types = { package = "iqkms-types", version = "0", path = "../iqkms-types", features = ["ethereum"] }
 
+# 3rd party dependencies
 tonic = "0.8"
+tracing = "0.1.37"

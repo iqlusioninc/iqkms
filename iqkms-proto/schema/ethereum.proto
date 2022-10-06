@@ -2,23 +2,47 @@ syntax = "proto3";
 
 package iqkms.ethereum;
 
-// Ethereum transaction signer service.
-service TxSigner {
-  // Request that a transaction be signed.
-  rpc SignTx (SignTxRequest) returns (SignTxResponse) {}
+// Ethereum signer service.
+service Signer {
+  // Sign a Keccak256 message digest (for e.g. EIP-712)
+  // <https://eips.ethereum.org/EIPS/eip-712>
+  rpc SignDigest (SignDigestRequest) returns (Signature) {}
+
+  // Sign a Keccak256 message digest according to EIP-155 conventions.
+  // <https://eips.ethereum.org/EIPS/eip-155>
+  rpc SignEip155 (SignEip155Request) returns (Signature) {}
 }
 
-// Request to sign a transaction.
-message SignTxRequest {
-  // Body of the transaction to be signed.
-  bytes tx_body = 1;
-
+// Request to sign a raw message digest.
+message SignDigestRequest {
   // Private key's Ethereum address (`0x` followed by 40 hex chars).
-  string address = 2;
+  string address = 1;
+
+  // Keccak256 message digest to be signed.
+  bytes digest = 2;
 }
 
-// Response from a transaction signing request.
-message SignTxResponse {
-  /// Signature over the transaction body.
-  bytes signature = 1;
+// Request to sign a message digest with EIP-155 conventions.
+// <https://eips.ethereum.org/EIPS/eip-155>
+message SignEip155Request {
+  // Private key's Ethereum address (`0x` followed by 40 hex chars).
+  string address = 1;
+
+  // Keccak256 message digest to be signed.
+  bytes digest = 2;
+
+  // Chain ID to use when computing EIP-155's `v` value.
+  uint64 chain_id = 3;
+}
+
+// ECDSA/secp256k1 signature with recovery component `v`.
+message Signature {
+  /// ECDSA signature `r` component.
+  bytes r = 1;
+
+  /// ECDSA signature `s` component.
+  bytes s = 2;
+
+  /// `v` component: encodes recovery ID and chain ID.
+  uint64 v = 3;
 }

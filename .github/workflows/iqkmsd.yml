@@ -4,10 +4,12 @@ on:
   pull_request:
     paths:
       - ".github/workflows/iqkmsd.yml"
-      - "iqkms-ethereum"
-      - "iqkms-proto"
-      - "iqkms-signing"
-      - "iqkmsd"
+      - "iq-crypto/**"
+      - "iqkms-ethereum/**"
+      - "iqkms-proto/**"
+      - "iqkms-signing/**"
+      - "iqkms-types/**"
+      - "iqkmsd/**"
   push:
     branches:
       - main

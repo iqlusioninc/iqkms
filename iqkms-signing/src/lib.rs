@@ -2,17 +2,20 @@
 
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
-#[cfg(feature = "ethereum")]
-#[cfg_attr(docsrs, doc(cfg(feature = "ethereum")))]
-pub mod ethereum;
-
 mod error;
 
 pub use crate::error::{Error, Result};
-pub use rand_core::{OsRng, RngCore};
+pub use crypto::{
+    digest::{sha2::Sha256, Digest},
+    rand::{OsRng, RngCore},
+    signature,
+};
 
-use signatory::{ecdsa, signature::Signer};
+use crypto::signature::{ecdsa, hazmat::PrehashSigner};
 use std::collections::BTreeMap as Map;
+
+#[cfg(feature = "ethereum")]
+use types::ethereum;
 
 /// Keys for producing digital signatures.
 #[derive(Default)]
@@ -51,23 +54,37 @@ impl KeyRing {
     /// Find a key by its Ethereum address.
     #[cfg(feature = "ethereum")]
     #[cfg_attr(docsrs, doc(cfg(feature = "ethereum")))]
-    pub fn find_by_eth_address(&self, addr: &ethereum::Address) -> Result<&SigningKey> {
-        self.eth_index
+    pub fn find_by_eth_address(
+        &self,
+        addr: &ethereum::Address,
+    ) -> Result<&ecdsa::secp256k1::SigningKey> {
+        let signing_key = self
+            .eth_index
             .get(addr)
             .and_then(|vk| self.keys.get(vk))
-            .ok_or(Error)
+            .ok_or(Error)?;
+
+        match signing_key {
+            SigningKey::EcdsaSecp256k1(key) => Ok(key),
+            #[allow(unreachable_patterns)]
+            _ => Err(Error),
+        }
     }
 }
 
 /// Signing key types.
 pub enum SigningKey {
     /// ECDSA/secp256k1
+    #[cfg(feature = "secp256k1")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "secp256k1")))]
     EcdsaSecp256k1(ecdsa::secp256k1::SigningKey),
 }
 
 impl SigningKey {
     /// Generate a random ECDSA/secp256k1 key.
     // TODO(tarcieri): unified `generate` method with algorithm parameter
+    #[cfg(feature = "secp256k1")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "secp256k1")))]
     pub fn generate_secp256k1() -> Self {
         let mut bytes = [0u8; 32];
 
@@ -84,10 +101,17 @@ impl SigningKey {
     /// Sign the given message with this key.
     // TODO(tarcieri): support for customizing hash function used
     pub fn sign(&self, msg: &[u8]) -> Result<Vec<u8>> {
+        self.sign_digest(&Sha256::digest(msg))
+    }
+
+    /// Sign the given prehashed message digest with this key.
+    pub fn sign_digest(&self, msg_digest: &[u8]) -> Result<Vec<u8>> {
         match self {
+            #[cfg(feature = "secp256k1")]
             Self::EcdsaSecp256k1(sk) => {
-                let sig: ecdsa::secp256k1::Signature = sk.try_sign(msg).map_err(|_| Error)?;
-                Ok(sig.to_vec())
+                PrehashSigner::<ecdsa::secp256k1::Signature>::sign_prehash(sk, msg_digest)
+                    .map(|sig| sig.to_vec())
+                    .map_err(|_| Error)
             }
         }
     }
@@ -95,11 +119,14 @@ impl SigningKey {
     /// Get the [`VerifyingKey`] that corresponds to this signing key.
     pub fn verifying_key(&self) -> VerifyingKey {
         match self {
+            #[cfg(feature = "secp256k1")]
             SigningKey::EcdsaSecp256k1(sk) => VerifyingKey::EcdsaSecp256k1(sk.verifying_key()),
         }
     }
 }
 
+#[cfg(feature = "secp256k1")]
+#[cfg_attr(docsrs, doc(cfg(feature = "secp256k1")))]
 impl From<ecdsa::secp256k1::SigningKey> for SigningKey {
     #[inline]
     fn from(key: ecdsa::secp256k1::SigningKey) -> SigningKey {
@@ -111,5 +138,7 @@ impl From<ecdsa::secp256k1::SigningKey> for SigningKey {
 #[derive(Clone, Debug, Eq, PartialEq, PartialOrd, Ord)]
 pub enum VerifyingKey {
     /// ECDSA/secp256k1
+    #[cfg(feature = "secp256k1")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "secp256k1")))]
     EcdsaSecp256k1(ecdsa::secp256k1::VerifyingKey),
 }

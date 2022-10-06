@@ -4,9 +4,10 @@ on:
   pull_request:
     paths:
       - ".github/workflows/ethereum.yml"
-      - "iqkms-ethereum"
-      - "iqkms-proto"
-      - "iqkms-signing"
+      - "iqkms-ethereum/**"
+      - "iqkms-proto/**"
+      - "iqkms-signing/**"
+      - "iqkms-types/**"
   push:
     branches:
       - main
