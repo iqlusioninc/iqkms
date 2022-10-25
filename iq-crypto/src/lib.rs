@@ -2,6 +2,10 @@
 
 #![no_std]
 #![cfg_attr(docsrs, feature(doc_cfg))]
+#![doc = include_str!("../README.md")]
+#![doc(
+    html_logo_url = "https://raw.githubusercontent.com/iqlusioninc/iqkms/main/.img/iqkms-sq.svg"
+)]
 #![forbid(unsafe_code)]
 #![warn(
     clippy::cast_lossless,

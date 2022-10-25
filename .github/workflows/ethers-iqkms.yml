@@ -1,12 +1,13 @@
-name: ethereum
+name: ethers-iqkms
 
 on:
   pull_request:
     paths:
-      - ".github/workflows/ethereum.yml"
+      - ".github/workflows/ethers-iqkms.yml"
+      - "ethers-iqkms/**"
+      - "iqkms/**"
       - "iqkms-ethereum/**"
       - "iqkms-proto/**"
-      - "iqkms-signing/**"
       - "iqkms-types/**"
   push:
     branches:
@@ -14,7 +15,7 @@ on:
 
 defaults:
   run:
-    working-directory: iqkms-ethereum
+    working-directory: ethers-iqkms
 
 env:
   CARGO_INCREMENTAL: 0

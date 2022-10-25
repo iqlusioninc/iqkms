@@ -34,7 +34,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    https://www.apache.org/licenses/LICENSE-2.0
+<https://www.apache.org/licenses/LICENSE-2.0>
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -59,8 +59,8 @@ licensed as above, without any additional terms or conditions.
 [crate-link]: https://crates.io/crates/iqkms-signing
 [docs-image]: https://docs.rs/iqkms-signing/badge.svg
 [docs-link]: https://docs.rs/iqkms-signing/
-[build-image]: https://github.com/iqlusioninc/iqkms/actions/workflows/iqkms-signing.yml/badge.svg
-[build-link]: https://github.com/iqlusioninc/iqkms/actions/workflows/iqkms-signing.yml
+[build-image]: https://github.com/iqlusioninc/iqkms/actions/workflows/signing.yml/badge.svg
+[build-link]: https://github.com/iqlusioninc/iqkms/actions/workflows/signing.yml
 [license-image]: https://img.shields.io/badge/license-Apache2.0-blue.svg
 [rustc-image]: https://img.shields.io/badge/rustc-1.64+-blue.svg
 

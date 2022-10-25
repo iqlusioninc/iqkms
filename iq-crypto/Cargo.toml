@@ -12,7 +12,7 @@ homepage = "https://github.com/iqlusioninc/iqkms/"
 repository = "https://github.com/iqlusioninc/iqkms/tree/main/iq-crypto"
 categories = ["cryptography"]
 keywords = ["crypto", "digest", "ecdsa"]
-rust-version = "1.63"
+rust-version = "1.64"
 edition = "2021"
 readme = "README.md"
 
@@ -22,25 +22,28 @@ generic-array = "0.14"
 rand_core = "0.6.4"
 
 # optional dependencies
-elliptic-curve = { version = "0.12", optional = true }
-ecdsa = { version = "0.14", optional = true }
-k256 = { version = "0.11.6", optional = true }
-sec1 = { version = "0.3", optional = true, features = ["point"] }
-sha2 = { version = "0.10", optional = true }
-sha3 = { version = "0.10", optional = true }
-signature = { version = ">=1.6.3, <1.7", optional = true, features = ["hazmat-preview"] }
-pkcs8 = { version = "0.9", optional = true }
+elliptic-curve = { version = "0.12", optional = true, default-features = false }
+ecdsa = { version = "0.14", optional = true, default-features = false, features = ["sign", "verify"] }
+k256 = { version = "0.11.6", optional = true, default-features = false, features = ["ecdsa", "pkcs8"] }
+sec1 = { version = "0.3", optional = true, default-features = false, features = ["point"] }
+sha2 = { version = "0.10", optional = true, default-features = false  }
+sha3 = { version = "0.10", optional = true, default-features = false }
+signature = { version = ">=1.6.3, <1.7", optional = true, default-features = false, features = ["hazmat-preview"] }
+pkcs8 = { version = "0.9", optional = true, default-features = false }
 
 [features]
 alloc = [
     "elliptic-curve?/alloc",
     "ecdsa?/alloc",
     "sec1?/alloc",
+    "pkcs8?/alloc"
 ]
 std = [
     "alloc",
+    "elliptic-curve?/std",
     "ecdsa?/std",
     "k256?/std",
+    "pkcs8?/std",
     "sec1?/std",
     "signature?/std"
 ]

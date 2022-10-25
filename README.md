@@ -1,4 +1,4 @@
-# iqkms
+# ![iqkms](https://raw.githubusercontent.com/iqlusioninc/iqkms/main/.img/iqkms.svg)
 
 Cryptographic key management service providing a gRPC API and support
 for a variety of key storage methods including [YubiHSM2] devices.
@@ -9,6 +9,17 @@ iqkms is currently in an early stage of development and is not ready to use.
 
 Please check back later.
 
+## Features
+
+- [ ] Cosmos
+  - [ ] Cosmos SDK-compatible transaction signatures
+- [ ] Ethereum
+  - [x] EIP-155 signatures
+  - [x] EIP-712 signatures
+  - [ ] Transaction signing
+- [ ] Tendermint
+  - [ ] Consensus signatures (i.e. "privval" support)
+
 ## Relationship to Tendermint KMS (a.k.a. tmkms)
 
 Tendermint KMS is another KMS service developed by iqlusion, aimed specifically
@@ -17,8 +28,10 @@ at Tendermint applications.
 We recommend all current users of Tendermint KMS continue to do so. While we
 aim for *iqkms* to eventually be able to function as a gRPC-native alternative
 to Tendermint KMS, it will be quite some time before it has the necessary
-functionality to do so, and we have no plans to retire Tendermint KMS and will
-continue supporting it indefinitely.
+functionality to do so.
+
+We have no plans to retire Tendermint KMS and will continue supporting it
+indefinitely.
 
 ## License
 
@@ -26,7 +39,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    https://www.apache.org/licenses/LICENSE-2.0
+<https://www.apache.org/licenses/LICENSE-2.0>
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,

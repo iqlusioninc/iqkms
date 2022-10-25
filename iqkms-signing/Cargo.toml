@@ -11,7 +11,7 @@ homepage = "https://github.com/iqlusioninc/iqkms/"
 repository = "https://github.com/iqlusioninc/iqkms/tree/main/iqkms-signing"
 categories = ["cryptography"]
 keywords = ["iqkms", "kms"]
-rust-version = "1.63"
+rust-version = "1.64"
 edition = "2021"
 readme = "README.md"
 

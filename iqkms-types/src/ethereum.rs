@@ -139,6 +139,7 @@ impl TryFrom<&EncodedPoint> for Address {
                 let digest = Keccak256::new().chain(x).chain(y).finalize();
 
                 // Take the last 20 bytes of the digest as the address
+                #[allow(clippy::integer_arithmetic)]
                 digest[(Address::LENGTH - 20)..].try_into()
             }
             _ => Err(Error),
