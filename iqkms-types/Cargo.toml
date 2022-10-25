@@ -1,7 +1,19 @@
 [package]
 name = "iqkms-types"
 version = "0.0.0"
+description = """
+Type definitions which can be shared between client and server components
+of iqkms
+"""
+authors = ["Tony Arcieri <tony@iqlusion.io>"]
+license = "Apache-2.0"
+homepage = "https://github.com/iqlusioninc/iqkms/"
+repository = "https://github.com/iqlusioninc/iqkms/tree/main/iqkms-types"
+categories = ["cryptography"]
+keywords = ["iqkms", "kms"]
+rust-version = "1.63"
 edition = "2021"
+readme = "README.md"
 
 [dependencies]
 crypto = { package = "iq-crypto", version = "0", optional = true, path = "../iq-crypto" }

@@ -1,8 +1,20 @@
 [package]
 name = "iq-crypto"
 version = "0.0.0"
-edition = "2021"
+description = """
+General-purpose pure Rust cryptography library providing a facade over a number
+of cryptographic algorithm implementations including hash functions and digital
+signature algorithms.
+"""
+authors = ["Tony Arcieri <tony@iqlusion.io>"]
+license = "Apache-2.0 OR MIT"
+homepage = "https://github.com/iqlusioninc/iqkms/"
+repository = "https://github.com/iqlusioninc/iqkms/tree/main/iq-crypto"
+categories = ["cryptography"]
+keywords = ["crypto", "digest", "ecdsa"]
 rust-version = "1.63"
+edition = "2021"
+readme = "README.md"
 
 [dependencies]
 digest = "0.10"

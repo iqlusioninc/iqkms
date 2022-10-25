@@ -1,7 +1,16 @@
 [package]
 name = "iqkms-proto"
 version = "0.0.0"
+description = "iqkms Protocol Buffers type definitions and schema"
+authors = ["Tony Arcieri <tony@iqlusion.io>"]
+license = "Apache-2.0"
+homepage = "https://github.com/iqlusioninc/iqkms/"
+repository = "https://github.com/iqlusioninc/iqkms/tree/main/iqkms-proto"
+categories = ["cryptography", "data-structures", "encoding"]
+keywords = ["iqkms", "kms"]
+rust-version = "1.63"
 edition = "2021"
+readme = "README.md"
 
 [dependencies]
 prost = "0.11"
