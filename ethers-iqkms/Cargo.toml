@@ -8,7 +8,7 @@ homepage = "https://github.com/iqlusioninc/iqkms/"
 repository = "https://github.com/iqlusioninc/iqkms/tree/main/ethers-iqkms"
 categories = ["cryptography::cryptocurrencies"]
 keywords = ["iqkms", "kms"]
-rust-version = "1.63"
+rust-version = "1.64"
 edition = "2021"
 readme = "README.md"
 

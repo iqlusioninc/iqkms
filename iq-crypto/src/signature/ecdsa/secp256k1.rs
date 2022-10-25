@@ -62,7 +62,7 @@ impl PrehashSigner<Signature> for SigningKey {
 
 impl PrehashSigner<RecoverableSignature> for SigningKey {
     fn sign_prehash(&self, prehash: &[u8]) -> signature::Result<RecoverableSignature> {
-        let prehash = <[u8; 32]>::try_from(prehash).map_err(signature::Error::from_source)?;
+        let prehash = <[u8; 32]>::try_from(prehash).map_err(|_| signature::Error::new())?;
         let sig = PrehashSigner::<Signature>::sign_prehash(self, &prehash)?;
         RecoverableSignature::from_digest_bytes_trial_recovery(
             &self.verifying_key(),
