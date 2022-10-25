@@ -1,7 +1,20 @@
-# iqkms
+# `iqkms` crate: Rust gRPC client library
 
-Cryptographic key management service providing a gRPC API and support
-for a variety of key storage methods including [YubiHSM2] devices.
+[![crate][crate-image]][crate-link]
+[![Docs][docs-image]][docs-link]
+[![Build Status][build-image]][build-link]
+![Apache 2.0][license-image]
+![Rust Version][rustc-image]
+
+Rust gRPC client library for *iqkms*: a cryptographic key management service
+providing a gRPC API and support for a variety of key storage methods.
+
+[Documentation][docs-link]
+
+## About
+
+The `iqkms` crate is a *client library*. For the service executable itself,
+please see [iqkms](../iqkms).
 
 ## Status
 
@@ -9,16 +22,12 @@ iqkms is currently in an early stage of development and is not ready to use.
 
 Please check back later.
 
-## Relationship to Tendermint KMS (a.k.a. tmkms)
+## Minimum Supported Rust Version
 
-Tendermint KMS is another KMS service developed by iqlusion, aimed specifically
-at Tendermint applications.
+This crate requires **Rust 1.64** at a minimum.
 
-We recommend all current users of Tendermint KMS continue to do so. While we
-aim for *iqkms* to eventually be able to function as a gRPC-native alternative
-to Tendermint KMS, it will be quite some time before it has the necessary
-functionality to do so, and we have no plans to retire Tendermint KMS and will
-continue supporting it indefinitely.
+We may change the MSRV in the future, but it will be accompanied by a minor
+version bump.
 
 ## License
 
@@ -45,8 +54,18 @@ Unless you explicitly state otherwise, any contribution intentionally submitted
 for inclusion in the work by you, as defined in the Apache-2.0 license, shall be
 licensed as above, without any additional terms or conditions.
 
+[//]: # (badges)
+
+[crate-image]: https://buildstats.info/crate/iqkms
+[crate-link]: https://crates.io/crates/iqkms
+[docs-image]: https://docs.rs/iqkms/badge.svg
+[docs-link]: https://docs.rs/iqkms/
+[build-image]: https://github.com/iqlusioninc/iqkms/actions/workflows/iqkms.yml/badge.svg
+[build-link]: https://github.com/iqlusioninc/iqkms/actions/workflows/iqkms.yml
+[license-image]: https://img.shields.io/badge/license-Apache2.0-blue.svg
+[rustc-image]: https://img.shields.io/badge/rustc-1.64+-blue.svg
+
 [//]: # (links)
 
-[YubiHSM2]: https://developers.yubico.com/YubiHSM2/
 [CODE_OF_CONDUCT.md]: https://github.com/iqlusioninc/iqkms/blob/main/CODE_OF_CONDUCT.md
 [CONTRIBUTING.md]: https://github.com/iqlusioninc/iqkms/blob/main/CONTRIBUTING.md

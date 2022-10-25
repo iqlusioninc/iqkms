@@ -1,7 +1,19 @@
 [package]
 name = "iqkms"
 version = "0.0.0"
+description = """
+Rust gRPC client library for *iqkms*: a cryptographic key management service
+providing a gRPC API and support for a variety of key storage methods.
+"""
+authors = ["Tony Arcieri <tony@iqlusion.io>"]
+license = "Apache-2.0"
+homepage = "https://github.com/iqlusioninc/iqkms/"
+repository = "https://github.com/iqlusioninc/iqkms/tree/main/ethers-iqkms"
+categories = ["cryptography"]
+keywords = ["iqkms", "kms"]
+rust-version = "1.63"
 edition = "2021"
+readme = "README.md"
 
 [dependencies]
 proto = { package = "iqkms-proto", version = "0", path = "../iqkms-proto" }

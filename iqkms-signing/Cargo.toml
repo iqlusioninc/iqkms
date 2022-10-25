@@ -1,7 +1,19 @@
 [package]
 name = "iqkms-signing"
 version = "0.0.0"
+description = """
+Signing service and keyring manager for producing digital signatures using
+keys stored in iqkms
+"""
+authors = ["Tony Arcieri <tony@iqlusion.io>"]
+license = "Apache-2.0"
+homepage = "https://github.com/iqlusioninc/iqkms/"
+repository = "https://github.com/iqlusioninc/iqkms/tree/main/iqkms-signing"
+categories = ["cryptography"]
+keywords = ["iqkms", "kms"]
+rust-version = "1.63"
 edition = "2021"
+readme = "README.md"
 
 [dependencies.crypto]
 package = "iq-crypto"

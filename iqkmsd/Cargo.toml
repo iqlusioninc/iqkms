@@ -1,7 +1,20 @@
 [package]
 name = "iqkmsd"
 version = "0.0.0"
+description = """
+iqkms daemon: cryptographic key management service application providing a
+gRPC API and support for a variety of key storage methods including YubiHSM2
+devices
+"""
+authors = ["Tony Arcieri <tony@iqlusion.io>"]
+license = "Apache-2.0"
+homepage = "https://github.com/iqlusioninc/iqkms/"
+repository = "https://github.com/iqlusioninc/iqkms/tree/main/iqkmsd"
+categories = ["cryptography"]
+keywords = ["iqkms", "kms"]
+rust-version = "1.63"
 edition = "2021"
+readme = "README.md"
 
 [dependencies]
 ethereum = { package = "iqkms-ethereum", version = "0", path = "../iqkms-ethereum" }
