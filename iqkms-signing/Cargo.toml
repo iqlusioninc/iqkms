@@ -28,3 +28,7 @@ types = { package = "iqkms-types", version = "0.0.1", optional = true, path = ".
 [features]
 ethereum = ["crypto/sha3", "secp256k1", "types/ethereum"]
 secp256k1 = ["crypto/secp256k1"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
