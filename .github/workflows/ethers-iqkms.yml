@@ -30,7 +30,7 @@ jobs:
           - 1.64.0 # MSRV
           - stable
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: ${{ matrix.rust }}
