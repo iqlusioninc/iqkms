@@ -1,6 +1,6 @@
 [package]
 name = "iqkmsd"
-version = "0.0.0"
+version = "0.0.1"
 description = """
 iqkms daemon: cryptographic key management service application providing a
 gRPC API and support for a variety of key storage methods including YubiHSM2
@@ -17,9 +17,9 @@ edition = "2021"
 readme = "README.md"
 
 [dependencies]
-ethereum = { package = "iqkms-ethereum", version = "0", path = "../iqkms-ethereum" }
-proto = { package = "iqkms-proto", version = "0", path = "../iqkms-proto" }
-signing = { package = "iqkms-signing", version = "0", path = "../iqkms-signing" }
+ethereum = { package = "iqkms-ethereum", version = "0.0.1", path = "../iqkms-ethereum" }
+proto = { package = "iqkms-proto", version = "0.0.1", path = "../iqkms-proto" }
+signing = { package = "iqkms-signing", version = "0.0.1", path = "../iqkms-signing" }
 
 tokio = { version = "1", features = ["full"] }
 tonic = "0.8"

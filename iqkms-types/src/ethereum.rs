@@ -7,7 +7,6 @@ pub use ethereum_types::{
 };
 
 use crate::{Error, Result};
-use base16ct as hex;
 use crypto::{
     digest::{sha3::Keccak256, Digest, Update},
     elliptic_curve::{

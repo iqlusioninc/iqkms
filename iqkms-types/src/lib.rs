@@ -28,3 +28,7 @@ pub use crate::error::{Error, Result};
 #[cfg(feature = "crypto")]
 #[cfg_attr(docsrs, doc(cfg(feature = "crypto")))]
 pub use crypto;
+
+#[cfg(feature = "hex")]
+#[cfg_attr(docsrs, doc(cfg(feature = "hex")))]
+pub use hex;
