@@ -1,6 +1,6 @@
 [package]
 name = "ethers-iqkms"
-version = "0.0.0"
+version = "0.0.1"
 description = "Support library for using iqkms as an Ethereum signer for ethers-rs"
 authors = ["Tony Arcieri <tony@iqlusion.io>"]
 license = "Apache-2.0"
