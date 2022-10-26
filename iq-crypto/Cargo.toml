@@ -52,3 +52,7 @@ ecdsa = ["dep:ecdsa", "elliptic-curve", "signature"]
 elliptic-curve = ["dep:elliptic-curve", "dep:sec1"]
 getrandom = ["rand_core/getrandom"]
 secp256k1 = ["alloc", "ecdsa",  "pkcs8", "sha3", "signature", "dep:k256"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
