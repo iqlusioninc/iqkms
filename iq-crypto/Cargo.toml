@@ -1,6 +1,6 @@
 [package]
 name = "iq-crypto"
-version = "0.0.0"
+version = "0.0.1"
 description = """
 General-purpose pure Rust cryptography library providing a facade over a number
 of cryptographic algorithm implementations including hash functions and digital

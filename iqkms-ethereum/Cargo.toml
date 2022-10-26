@@ -1,6 +1,6 @@
 [package]
 name = "iqkms-ethereum"
-version = "0.0.0"
+version = "0.0.1"
 description = "gRPC service for computing Ethereum signatures using keys stored in iqkms"
 authors = ["Tony Arcieri <tony@iqlusion.io>"]
 license = "Apache-2.0"
@@ -13,9 +13,9 @@ edition = "2021"
 readme = "README.md"
 
 [dependencies]
-proto = { package = "iqkms-proto", version = "0", path = "../iqkms-proto" }
-signing = { package = "iqkms-signing", version = "0", path = "../iqkms-signing", features = ["ethereum"] }
-types = { package = "iqkms-types", version = "0", path = "../iqkms-types", features = ["ethereum"] }
+proto = { package = "iqkms-proto", version = "0.0.1", path = "../iqkms-proto" }
+signing = { package = "iqkms-signing", version = "0.0.1", path = "../iqkms-signing", features = ["ethereum"] }
+types = { package = "iqkms-types", version = "0.0.1", path = "../iqkms-types", features = ["ethereum"] }
 
 # 3rd party dependencies
 tonic = "0.8"

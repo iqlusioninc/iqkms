@@ -1,6 +1,6 @@
 [package]
 name = "iqkms-proto"
-version = "0.0.0"
+version = "0.0.1"
 description = "iqkms Protocol Buffers type definitions and schema"
 authors = ["Tony Arcieri <tony@iqlusion.io>"]
 license = "Apache-2.0"

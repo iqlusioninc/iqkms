@@ -16,5 +16,5 @@ readme = "README.md"
 async-trait = "0.1"
 ethers-core = { git = "https://github.com/gakonst/ethers-rs.git" }
 ethers-signers = { git = "https://github.com/gakonst/ethers-rs.git" }
-iqkms = { version = "0", path = "../iqkms", features = ["ethereum"] }
+iqkms = { version = "0.0.1", path = "../iqkms", features = ["ethereum"] }
 tracing = "0.1.37"
