@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - ".github/workflows/ethers-iqkms.yml"
+      - "Cargo.*"
       - "ethers-iqkms/**"
       - "iqkms/**"
       - "iqkms-ethereum/**"
@@ -27,15 +28,13 @@ jobs:
     strategy:
       matrix:
         rust:
-          - 1.64.0 # MSRV
+          - 1.64 # MSRV
           - stable
     steps:
       - uses: actions/checkout@v3
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: ${{ matrix.rust }}
-          override: true
-          profile: minimal
       - run: sudo apt-get install protobuf-compiler
       - run: cargo test
       - run: cargo test --release

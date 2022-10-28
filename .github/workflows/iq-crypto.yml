@@ -4,8 +4,8 @@ on:
   pull_request:
     paths:
       - ".github/workflows/iq-crypto.yml"
-      - "iq-crypto/**"
       - "Cargo.*"
+      - "iq-crypto/**"
   push:
     branches: master
 
@@ -23,19 +23,17 @@ jobs:
     strategy:
       matrix:
         rust:
-          - 1.64.0 # MSRV
+          - 1.64 # MSRV
           - stable
         target:
           - thumbv7em-none-eabi
           - wasm32-unknown-unknown
     steps:
       - uses: actions/checkout@v3
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@master
         with:
-          profile: minimal
           toolchain: ${{ matrix.rust }}
-          target: ${{ matrix.target }}
-          override: true
+      - run: rustup target add ${{ matrix.target }}
       - run: cargo install cargo-hack
       - run: cargo hack build --target ${{ matrix.target }} --feature-powerset --exclude-features getrandom,std
 
@@ -44,15 +42,13 @@ jobs:
     strategy:
       matrix:
         rust:
-          - 1.64.0 # MSRV
+          - 1.64 # MSRV
           - stable
     steps:
       - uses: actions/checkout@v3
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@master
         with:
-          profile: minimal
           toolchain: ${{ matrix.rust }}
-          override: true
       - run: cargo test --no-default-features
       - run: cargo test
       - run: cargo test --release
