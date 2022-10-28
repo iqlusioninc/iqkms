@@ -17,12 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@1.64
         with:
-          toolchain: 1.64.0
           components: clippy
-          override: true
-          profile: minimal
       - run: sudo apt-get install protobuf-compiler
       - run: cargo clippy --all-features
 
@@ -31,11 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: RustCrypto/actions/cargo-cache@master
-      - uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          override: true
-          profile: minimal
+      - uses: dtolnay/rust-toolchain@stable
       - run: sudo apt-get install protobuf-compiler
       - run: cargo doc --all-features
 
@@ -43,10 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@1.64
         with:
-          toolchain: stable
           components: rustfmt
-          override: true
-          profile: minimal
       - run: cargo fmt --all -- --check
