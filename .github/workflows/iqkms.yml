@@ -20,8 +20,7 @@ env:
   RUSTFLAGS: "-Dwarnings"
 
 jobs:
-  # TODO(tarcieri): run tests in CI
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -34,5 +33,5 @@ jobs:
         with:
           toolchain: ${{ matrix.rust }}
       - run: sudo apt-get install protobuf-compiler
-      - run: cargo build
-      - run: cargo build --release
+      - run: cargo test
+      - run: cargo test --release
