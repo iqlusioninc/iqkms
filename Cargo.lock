@@ -626,9 +626,9 @@ dependencies = [
 
 [[package]]
 name = "ethers-signers"
-version = "1.0.0"
+version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f1f97da069cd77dd91a0a7f0c979f063a4bf9d2533b277ff5ccb19b7ac348376"
+checksum = "341b582c30f5949b63bd76b2a08b6b997d8fe08fbe8026bd6ae042f5f9190eb4"
 dependencies = [
  "async-trait",
  "coins-bip32",
