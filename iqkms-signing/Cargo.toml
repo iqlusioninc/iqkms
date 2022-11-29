@@ -21,8 +21,8 @@ version = "0.0.1"
 features = ["ecdsa", "getrandom", "sha2", "std"]
 path = "../iq-crypto"
 
-# optional dependencies
 [dependencies]
+# optional dependencies
 types = { package = "iqkms-types", version = "0.0.1", optional = true, path = "../iqkms-types" }
 
 [features]
