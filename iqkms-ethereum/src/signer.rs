@@ -4,7 +4,7 @@ use crate::Error;
 use proto::ethereum::{signer_server::Signer, SignDigestRequest, SignEip155Request, Signature};
 use signing::{
     signature::{ecdsa::secp256k1::RecoverableSignature, hazmat::PrehashSigner},
-    KeyRing,
+    Keyring,
 };
 use tonic::{Request, Response, Status};
 use tracing::trace;
@@ -16,12 +16,12 @@ type H256 = [u8; 32];
 /// Signer gRPC service.
 pub struct SignerService {
     /// Signing keyring.
-    keyring: KeyRing,
+    keyring: Keyring,
 }
 
 impl SignerService {
     /// Create a new RPC service with the given keyring.
-    pub fn new(keyring: KeyRing) -> Self {
+    pub fn new(keyring: Keyring) -> Self {
         Self { keyring }
     }
 

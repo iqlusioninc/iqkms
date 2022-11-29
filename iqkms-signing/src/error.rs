@@ -2,7 +2,7 @@
 
 /// Error type.
 // TODO(tarcieri): convert this into an enum?
-#[derive(Clone, Debug)]
+#[derive(Clone, Copy, Debug)]
 pub struct Error;
 
 /// Result type with the `iqkms-signing` crate's [`Error`] type.
