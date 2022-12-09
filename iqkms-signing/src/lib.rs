@@ -25,12 +25,14 @@
 
 mod error;
 mod keyring;
+mod service;
 mod signing_key;
 mod verifying_key;
 
 pub use crate::{
     error::{Error, Result},
     keyring::Keyring,
+    service::{KeyHandle, SigningService},
     signing_key::SigningKey,
     verifying_key::VerifyingKey,
 };

@@ -1,5 +1,4 @@
 use crate::{Error, Result, SigningKey, VerifyingKey};
-use crypto::signature::ecdsa;
 use std::{
     collections::BTreeMap as Map,
     fmt::{self, Debug},
@@ -45,21 +44,11 @@ impl Keyring {
     /// Find a key by its Ethereum address.
     #[cfg(feature = "ethereum")]
     #[cfg_attr(docsrs, doc(cfg(feature = "ethereum")))]
-    pub fn find_by_eth_address(
-        &self,
-        addr: &ethereum::Address,
-    ) -> Result<&ecdsa::secp256k1::SigningKey> {
-        let signing_key = self
-            .eth_index
-            .get(addr)
+    pub fn find_by_eth_address(&self, eth_addr: &ethereum::Address) -> Result<&SigningKey> {
+        self.eth_index
+            .get(eth_addr)
             .and_then(|vk| self.keys.get(vk))
-            .ok_or(Error)?;
-
-        match signing_key {
-            SigningKey::EcdsaSecp256k1(key) => Ok(key),
-            #[allow(unreachable_patterns)]
-            _ => Err(Error),
-        }
+            .ok_or(Error)
     }
 }
 

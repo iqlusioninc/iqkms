@@ -35,11 +35,11 @@ impl SigningKey {
     /// Sign the given message with this key.
     // TODO(tarcieri): support for customizing hash function used
     pub fn sign(&self, msg: &[u8]) -> Result<Vec<u8>> {
-        self.sign_digest(&Sha256::digest(msg))
+        self.sign_prehash(&Sha256::digest(msg))
     }
 
     /// Sign the given prehashed message digest with this key.
-    pub fn sign_digest(&self, msg_digest: &[u8]) -> Result<Vec<u8>> {
+    pub fn sign_prehash(&self, msg_digest: &[u8]) -> Result<Vec<u8>> {
         match self {
             #[cfg(feature = "secp256k1")]
             Self::EcdsaSecp256k1(sk) => {

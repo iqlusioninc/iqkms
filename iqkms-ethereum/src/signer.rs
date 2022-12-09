@@ -2,10 +2,7 @@
 
 use crate::Error;
 use proto::ethereum::{signer_server::Signer, SignDigestRequest, SignEip155Request, Signature};
-use signing::{
-    signature::{ecdsa::secp256k1::RecoverableSignature, hazmat::PrehashSigner},
-    Keyring,
-};
+use signing::{signature::ecdsa::secp256k1, Keyring, VerifyingKey};
 use tonic::{Request, Response, Status};
 use tracing::trace;
 use types::ethereum::Address;
@@ -27,17 +24,33 @@ impl SignerService {
 
     /// Parse the given string as an Ethereum address and look up the
     /// corresponding key in the keyring.
-    fn sign_digest(&self, address: &str, digest: &[u8]) -> Result<Signature, Error> {
-        let address = address.parse::<Address>().map_err(Error::from)?;
+    fn sign_digest(&self, addr: &str, digest: &[u8]) -> Result<Signature, Error> {
+        let addr = addr.parse::<Address>().map_err(Error::from)?;
 
         let signing_key = self
             .keyring
-            .find_by_eth_address(&address)
+            .find_by_eth_address(&addr)
             .map_err(Error::from)?;
 
+        let verifying_key = match signing_key.verifying_key() {
+            VerifyingKey::EcdsaSecp256k1(vk) => vk,
+            #[allow(unreachable_patterns)]
+            _ => {
+                return Err(Error::SigningKeyNotFound {
+                    addr: addr.to_string(),
+                })
+            }
+        };
+
         let digest = H256::try_from(digest).map_err(|_| Error::DigestMalformed)?;
-        let signature: RecoverableSignature =
-            signing_key.sign_prehash(&digest).map_err(Error::from)?;
+        let raw_signature =
+            secp256k1::Signature::try_from(signing_key.sign_prehash(&digest)?.as_ref())?;
+
+        let signature = secp256k1::RecoverableSignature::from_digest_bytes_trial_recovery(
+            &verifying_key,
+            &digest.into(),
+            &raw_signature,
+        )?;
 
         let r = signature.r().to_bytes().to_vec();
         let s = signature.s().to_bytes().to_vec();

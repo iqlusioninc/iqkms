@@ -32,3 +32,7 @@ pub use crypto;
 #[cfg(feature = "hex")]
 #[cfg_attr(docsrs, doc(cfg(feature = "hex")))]
 pub use hex;
+
+/// Immutable bytestring representation.
+// TODO(tarcieri): use `bytes::Bytes` instead?
+pub type Bytes = Vec<u8>;
