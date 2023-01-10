@@ -1011,6 +1011,7 @@ dependencies = [
  "iqkms-signing",
  "iqkms-types",
  "tonic",
+ "tower",
  "tracing",
 ]
 
@@ -1037,6 +1038,7 @@ name = "iqkms-types"
 version = "0.0.1"
 dependencies = [
  "base16ct",
+ "bytes",
  "ethereum-types",
  "iq-crypto",
 ]
@@ -1050,6 +1052,7 @@ dependencies = [
  "iqkms-signing",
  "tokio",
  "tonic",
+ "tower",
 ]
 
 [[package]]

@@ -1,4 +1,4 @@
-use crate::{Error, Result, SigningKey, VerifyingKey};
+use crate::{signing_key::SigningKey, verifying_key::VerifyingKey, Error, Result};
 use std::{
     collections::BTreeMap as Map,
     fmt::{self, Debug},
@@ -9,7 +9,7 @@ use types::ethereum;
 
 /// Keys for producing digital signatures.
 #[derive(Default)]
-pub struct Keyring {
+pub(crate) struct Keyring {
     /// Signing keys.
     keys: Map<VerifyingKey, SigningKey>,
 
@@ -19,12 +19,8 @@ pub struct Keyring {
 }
 
 impl Keyring {
-    /// Create a new key ring.
-    pub fn new() -> Self {
-        Self::default()
-    }
-
     /// Add a key to the ring.
+    #[allow(dead_code)] // TODO(tarcieri): use me!
     pub fn add(&mut self, signing_key: SigningKey) -> Result<()> {
         let verifying_key = signing_key.verifying_key();
 

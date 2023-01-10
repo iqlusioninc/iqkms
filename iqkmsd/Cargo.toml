@@ -21,5 +21,7 @@ ethereum = { package = "iqkms-ethereum", version = "0.0.1", path = "../iqkms-eth
 proto = { package = "iqkms-proto", version = "0.0.1", path = "../iqkms-proto" }
 signing = { package = "iqkms-signing", version = "0.0.1", path = "../iqkms-signing" }
 
+# 3rd party dependencies
 tokio = { version = "1", features = ["full"] }
 tonic = "0.8"
+tower = "0.4"

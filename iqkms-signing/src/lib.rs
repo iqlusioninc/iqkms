@@ -31,9 +31,7 @@ mod verifying_key;
 
 pub use crate::{
     error::{Error, Result},
-    keyring::Keyring,
-    service::{KeyHandle, SigningService},
-    signing_key::SigningKey,
+    service::{KeyHandle, Request, Response, SigningService},
     verifying_key::VerifyingKey,
 };
 pub use crypto::signature;

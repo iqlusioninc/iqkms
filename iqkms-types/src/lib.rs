@@ -23,7 +23,8 @@ pub mod ethereum;
 
 mod error;
 
-pub use crate::error::{Error, Result};
+pub use crate::error::{BoxError, Error, Result};
+pub use bytes::{self, Bytes};
 
 #[cfg(feature = "crypto")]
 #[cfg_attr(docsrs, doc(cfg(feature = "crypto")))]
@@ -32,7 +33,3 @@ pub use crypto;
 #[cfg(feature = "hex")]
 #[cfg_attr(docsrs, doc(cfg(feature = "hex")))]
 pub use hex;
-
-/// Immutable bytestring representation.
-// TODO(tarcieri): use `bytes::Bytes` instead?
-pub type Bytes = Vec<u8>;
