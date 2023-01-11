@@ -19,6 +19,7 @@ types = { package = "iqkms-types", version = "0.0.1", path = "../iqkms-types", f
 
 # 3rd party dependencies
 tonic = "0.8"
+tower = "0.4"
 tracing = "0.1.37"
 
 [package.metadata.docs.rs]

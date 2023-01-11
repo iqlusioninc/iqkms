@@ -23,7 +23,8 @@ pub mod ethereum;
 
 mod error;
 
-pub use crate::error::{Error, Result};
+pub use crate::error::{BoxError, Error, Result};
+pub use bytes::{self, Bytes};
 
 #[cfg(feature = "crypto")]
 #[cfg_attr(docsrs, doc(cfg(feature = "crypto")))]

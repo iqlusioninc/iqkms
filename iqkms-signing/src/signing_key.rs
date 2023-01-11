@@ -5,6 +5,7 @@ use crypto::{
     signature::{ecdsa, hazmat::PrehashSigner},
 };
 use std::fmt::{self, Debug};
+use types::Bytes;
 
 /// Signing key.
 pub enum SigningKey {
@@ -19,6 +20,7 @@ impl SigningKey {
     // TODO(tarcieri): unified `generate` method with algorithm parameter
     #[cfg(feature = "secp256k1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "secp256k1")))]
+    #[allow(dead_code)] // TODO(tarcieri): use me!
     pub fn generate_secp256k1() -> Self {
         let mut bytes = [0u8; 32];
 
@@ -34,17 +36,18 @@ impl SigningKey {
 
     /// Sign the given message with this key.
     // TODO(tarcieri): support for customizing hash function used
-    pub fn sign(&self, msg: &[u8]) -> Result<Vec<u8>> {
-        self.sign_digest(&Sha256::digest(msg))
+    #[allow(dead_code)] // TODO(tarcieri): use me!
+    pub fn sign(&self, msg: &[u8]) -> Result<Bytes> {
+        self.sign_prehash(&Sha256::digest(msg))
     }
 
     /// Sign the given prehashed message digest with this key.
-    pub fn sign_digest(&self, msg_digest: &[u8]) -> Result<Vec<u8>> {
+    pub fn sign_prehash(&self, msg_digest: &[u8]) -> Result<Bytes> {
         match self {
             #[cfg(feature = "secp256k1")]
             Self::EcdsaSecp256k1(sk) => {
                 PrehashSigner::<ecdsa::secp256k1::Signature>::sign_prehash(sk, msg_digest)
-                    .map(|sig| sig.to_vec())
+                    .map(|sig| sig.to_vec().into())
                     .map_err(|_| Error)
             }
         }
