@@ -16,6 +16,7 @@ edition = "2021"
 readme = "README.md"
 
 [dependencies]
+bytes = "1.2"
 crypto = { package = "iq-crypto", version = "0.0.1", optional = true, path = "../iq-crypto" }
 
 # 3rd party dependencies
