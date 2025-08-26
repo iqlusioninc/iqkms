@@ -7,7 +7,7 @@
 )]
 #![forbid(unsafe_code)]
 #![warn(
-    clippy::integer_arithmetic,
+    clippy::arithmetic_side_effects,
     clippy::panic,
     // clippy::panic_in_result_fn,
     clippy::unwrap_used,
@@ -20,19 +20,18 @@
 pub use ethers_core::types;
 
 use ethers_core::types::{
-    transaction::{eip2718::TypedTransaction, eip712::Eip712},
     Signature,
+    transaction::{eip712::Eip712, eip2718::TypedTransaction},
 };
 use ethers_signers::Signer;
 use iqkms::{
-    proto,
+    Error, StdError, proto,
     tokio::sync::Mutex,
     tonic,
     types::{
-        crypto::digest::{sha3::Keccak256, Digest},
+        crypto::digest::{Digest, sha3::Keccak256},
         ethereum::{Address, ChainId, H160, H256, U256},
     },
-    Error, StdError,
 };
 use std::{fmt, sync::Arc};
 use tracing::instrument;

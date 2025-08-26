@@ -2,13 +2,13 @@
 
 // Re-export select types from the `ethereum-types` crate.
 pub use ethereum_types::{
-    BigEndianHash, FromDecStrErr, FromStrRadixErr, FromStrRadixErrKind, H128, H160, H256, H264,
-    H32, H512, H520, H64, U128, U256, U512, U64,
+    BigEndianHash, FromDecStrErr, FromStrRadixErr, FromStrRadixErrKind, H32, H64, H128, H160, H256,
+    H264, H512, H520, U64, U128, U256, U512,
 };
 
 use crate::{Error, Result};
 use crypto::{
-    digest::{sha3::Keccak256, Digest, Update},
+    digest::{Digest, Update, sha3::Keccak256},
     elliptic_curve::{
         sec1::{self, ToEncodedPoint},
         secp256k1::EncodedPoint,
@@ -105,6 +105,7 @@ impl FromStr for Address {
 /// Encode address as EIP-55 mixed-case checksum encoding.
 ///
 /// <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md>
+#[allow(clippy::to_string_trait_impl)] // TODO(tarcieri): implement in a `Display`-friendly way?
 impl ToString for Address {
     fn to_string(&self) -> String {
         let addr_hex = hex::lower::encode_string(self.as_ref());
@@ -139,7 +140,7 @@ impl TryFrom<&EncodedPoint> for Address {
                 let digest = Keccak256::new().chain(x).chain(y).finalize();
 
                 // Take the last 20 bytes of the digest as the address
-                #[allow(clippy::integer_arithmetic)]
+                #[allow(clippy::arithmetic_side_effects)]
                 digest[(Address::LENGTH - 20)..].try_into()
             }
             _ => Err(Error),

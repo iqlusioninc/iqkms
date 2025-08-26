@@ -1,13 +1,13 @@
 //! iqkms Ethereum support
 
 pub use types::{
-    crypto::digest::{sha3::Keccak256, Digest},
+    crypto::digest::{Digest, sha3::Keccak256},
     ethereum::{Address, ChainId, H256},
 };
 
 use crate::{Error, StdError};
 use proto::ethereum::{SignDigestRequest, SignEip155Request, Signature};
-use tonic::{transport, Request};
+use tonic::{Request, transport};
 
 /// Tonic-generated inner gRPC client.
 type SignerClientInner = proto::ethereum::signer_client::SignerClient<transport::Channel>;

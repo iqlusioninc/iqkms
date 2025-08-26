@@ -1,4 +1,4 @@
-use crate::{signing_key::SigningKey, verifying_key::VerifyingKey, Error, Result};
+use crate::{Error, Result, signing_key::SigningKey, verifying_key::VerifyingKey};
 use std::{
     collections::BTreeMap as Map,
     fmt::{self, Debug},

@@ -1,4 +1,4 @@
-use crate::{keyring::Keyring, Error, Result, VerifyingKey};
+use crate::{Error, Result, VerifyingKey, keyring::Keyring};
 use std::{
     future::Future,
     pin::Pin,

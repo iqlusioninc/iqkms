@@ -15,7 +15,7 @@
     clippy::cast_sign_loss,
     clippy::checked_conversions,
     clippy::implicit_saturating_sub,
-    clippy::integer_arithmetic,
+    clippy::arithmetic_side_effects,
     clippy::panic,
     clippy::panic_in_result_fn,
     clippy::unwrap_used,
