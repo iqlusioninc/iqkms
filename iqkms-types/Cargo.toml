@@ -21,7 +21,7 @@ crypto = { package = "iq-crypto", version = "0.0.1", optional = true, path = "..
 
 # 3rd party dependencies
 hex = { package = "base16ct", version = "0.1", optional = true, features = ["alloc"] }
-ethereum-types = { version = "0.13", optional = true, default-features = false }
+ethereum-types = { version = "0.14", optional = true, default-features = false }
 
 [features]
 ethereum = ["crypto/secp256k1", "crypto/sha3", "ethereum-types", "hex"]
