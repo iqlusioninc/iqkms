@@ -51,7 +51,7 @@ licensed as above, without any additional terms or conditions.
 
 [//]: # (badges)
 
-[crate-image]: https://buildstats.info/crate/ethers-iqkms
+[crate-image]: https://img.shields.io/crates/v/ethers-iqkms?logo=rust
 [crate-link]: https://crates.io/crates/ethers-iqkms
 [docs-image]: https://docs.rs/ethers-iqkms/badge.svg
 [docs-link]: https://docs.rs/ethers-iqkms/

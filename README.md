@@ -11,27 +11,25 @@ Please check back later.
 
 ## Features
 
+- [ ] CometBFT
+    - [ ] Consensus signatures (i.e. "privval" support)
 - [ ] Cosmos
   - [ ] Cosmos SDK-compatible transaction signatures
 - [ ] Ethereum
   - [x] EIP-155 signatures
   - [x] EIP-712 signatures
   - [ ] Transaction signing
-- [ ] Tendermint
-  - [ ] Consensus signatures (i.e. "privval" support)
 
 ## Relationship to Tendermint KMS (a.k.a. tmkms)
 
-Tendermint KMS is another KMS service developed by iqlusion, aimed specifically
-at Tendermint applications.
+Tendermint KMS (tmkms) is another KMS service developed by iqlusion, aimed specifically at
+CometBFT/Tendermint applications.
 
-We recommend all current users of Tendermint KMS continue to do so. While we
-aim for *iqkms* to eventually be able to function as a gRPC-native alternative
-to Tendermint KMS, it will be quite some time before it has the necessary
-functionality to do so.
+We recommend all current users of Tendermint KMS continue to do so. While we aim for *iqkms* to
+eventually be able to function as a gRPC-native alternative to Tendermint KMS, it will be quite some
+time before it has the necessary functionality to do so.
 
-We have no plans to retire Tendermint KMS and will continue supporting it
-indefinitely.
+We have no plans to retire Tendermint KMS and will continue supporting it indefinitely.
 
 ## License
 

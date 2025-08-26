@@ -47,7 +47,7 @@ dual licensed as above, without any additional terms or conditions.
 
 [//]: # (badges)
 
-[crate-image]: https://buildstats.info/crate/iq-crypto
+[crate-image]: https://img.shields.io/crates/v/iq-crypto?logo=rust
 [crate-link]: https://crates.io/crates/iq-crypto
 [docs-image]: https://docs.rs/iq-crypto/badge.svg
 [docs-link]: https://docs.rs/iq-crypto/
