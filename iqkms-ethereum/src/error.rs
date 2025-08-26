@@ -35,7 +35,7 @@ impl Error {
     fn code(&self) -> tonic::Code {
         match self {
             Error::AddressMalformed { .. } => tonic::Code::InvalidArgument,
-            Error::DigestMalformed { .. } => tonic::Code::InvalidArgument,
+            Error::DigestMalformed => tonic::Code::InvalidArgument,
             Error::SigningKeyNotFound { .. } => tonic::Code::NotFound,
             Error::SigningFailed { .. } => tonic::Code::Internal,
         }

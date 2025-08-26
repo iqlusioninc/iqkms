@@ -1,8 +1,8 @@
 //! ECDSA/secp256k1 support.
 
 pub use k256::ecdsa::{
-    recoverable::{Id as RecoveryId, Signature as RecoverableSignature},
     Signature, VerifyingKey,
+    recoverable::{Id as RecoveryId, Signature as RecoverableSignature},
 };
 
 use crate::{Error, Result};

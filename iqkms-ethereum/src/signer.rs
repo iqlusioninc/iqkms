@@ -1,12 +1,12 @@
 //! iqkms Ethereum RPC service.
 
 use crate::Error;
-use proto::ethereum::{signer_server::Signer, SignDigestRequest, SignEip155Request, Signature};
-use signing::{signature::ecdsa::secp256k1, VerifyingKey};
+use proto::ethereum::{SignDigestRequest, SignEip155Request, Signature, signer_server::Signer};
+use signing::{VerifyingKey, signature::ecdsa::secp256k1};
 use tonic::{Request, Response, Status};
 use tower::{Service, ServiceExt};
 use tracing::trace;
-use types::{ethereum::Address, BoxError, Bytes};
+use types::{BoxError, Bytes, ethereum::Address};
 
 /// Signer gRPC service.
 pub struct SignerService<S> {
@@ -94,8 +94,7 @@ where
         Ok(self
             .sign_digest(address, request.digest.into())
             .await
-            .map(Response::new)
-            .map_err(Error::from)?)
+            .map(Response::new)?)
     }
 
     async fn sign_eip155(
@@ -107,12 +106,8 @@ where
         let request = request.into_inner();
         let address = request.address.parse::<Address>().map_err(Error::from)?;
 
-        let mut signature = self
-            .sign_digest(address, request.digest.into())
-            .await
-            .map_err(Error::from)?;
-
-        // Apply EIP-155
+        // Compute signature and apply EIP-155
+        let mut signature = self.sign_digest(address, request.digest.into()).await?;
         signature.v = (request.chain_id * 2 + 35) + ((signature.v - 1) % 2);
         Ok(Response::new(signature))
     }

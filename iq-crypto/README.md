@@ -20,7 +20,7 @@ Please check back later.
 
 ## Minimum Supported Rust Version
 
-This crate requires **Rust 1.64** at a minimum.
+This crate requires **Rust 1.85** at a minimum.
 
 We may change the MSRV in the future, but it will be accompanied by a minor
 version bump.
@@ -54,7 +54,7 @@ dual licensed as above, without any additional terms or conditions.
 [build-image]: https://github.com/iqlusioninc/iqkms/actions/workflows/iq-crypto.yml/badge.svg
 [build-link]: https://github.com/iqlusioninc/iqkms/actions/workflows/iq-crypto.yml
 [license-image]: https://img.shields.io/badge/license-Apache2.0+MIT-blue.svg
-[rustc-image]: https://img.shields.io/badge/rustc-1.64+-blue.svg
+[rustc-image]: https://img.shields.io/badge/rustc-1.85+-blue.svg
 
 [//]: # (links)
 

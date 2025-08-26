@@ -1,6 +1,6 @@
 use crate::{Error, Result, VerifyingKey};
 use crypto::{
-    digest::{sha2::Sha256, Digest},
+    digest::{Digest, sha2::Sha256},
     rand::{OsRng, RngCore},
     signature::{ecdsa, hazmat::PrehashSigner},
 };
