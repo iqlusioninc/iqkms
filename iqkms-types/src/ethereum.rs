@@ -109,6 +109,7 @@ impl ToString for Address {
     fn to_string(&self) -> String {
         let addr_hex = hex::lower::encode_string(self.as_ref());
 
+        #[allow(clippy::redundant_clone)]
         let prefixed_addr = match self.chain_id {
             Some(chain_id) => format!("{}0x{}", chain_id, addr_hex),
             None => addr_hex.clone(),
