@@ -96,6 +96,7 @@ impl TryCloneIo for std::net::TcpStream {
     }
 }
 
+#[cfg(unix)]
 impl TryCloneIo for std::os::unix::net::UnixStream {
     fn try_clone(&self) -> io::Result<Self> {
         self.try_clone()
