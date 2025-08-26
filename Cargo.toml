@@ -1,6 +1,7 @@
 [workspace]
-resolver = "2"
+resolver = "3"
 members = [
+    "cometbft-p2p",
     "ethers-iqkms",
     "iq-crypto",
     "iqkms",

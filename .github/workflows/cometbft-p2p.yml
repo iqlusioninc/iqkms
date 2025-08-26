@@ -1,0 +1,35 @@
+name: cometbft-p2p
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/cometbft-p2p.yml"
+      - "Cargo.*"
+      - "cometbft-p2p/**"
+  push:
+    branches: master
+
+defaults:
+  run:
+    working-directory: cometbft-p2p
+
+env:
+  CARGO_INCREMENTAL: 0
+  RUSTFLAGS: "-Dwarnings"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust:
+          - 1.85 # MSRV
+          - stable
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ matrix.rust }}
+      - run: cargo test
+      - run: cargo test --all-features
+      - run: cargo test --all-features --release
