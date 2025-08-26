@@ -25,8 +25,10 @@ rand_core = "0.6.4"
 elliptic-curve = { version = "0.12", optional = true, default-features = false }
 ecdsa = { version = "0.14", optional = true, default-features = false, features = ["sign", "verify"] }
 k256 = { version = "0.11.6", optional = true, default-features = false, features = ["ecdsa", "pkcs8"] }
+p256 = { version = "0.11", optional = true, default-features = false, features = ["ecdsa", "pkcs8"] }
+p384 = { version = "0.11", optional = true, default-features = false, features = ["ecdsa", "pkcs8"] }
 sec1 = { version = "0.3", optional = true, default-features = false, features = ["point"] }
-sha2 = { version = "0.10", optional = true, default-features = false  }
+sha2 = { version = "0.10", optional = true, default-features = false }
 sha3 = { version = "0.10", optional = true, default-features = false }
 signature = { version = ">=1.6.3, <1.7", optional = true, default-features = false, features = ["hazmat-preview"] }
 pkcs8 = { version = "0.9", optional = true, default-features = false }
@@ -49,9 +51,12 @@ std = [
 ]
 
 ecdsa = ["dep:ecdsa", "elliptic-curve", "signature"]
+ed25519 = []
 elliptic-curve = ["dep:elliptic-curve", "dep:sec1"]
 getrandom = ["rand_core/getrandom"]
-secp256k1 = ["alloc", "ecdsa",  "pkcs8", "sha3", "signature", "dep:k256"]
+nistp256 = ["alloc", "ecdsa", "pkcs8", "signature", "dep:p256"]
+nistp384 = ["alloc", "ecdsa", "pkcs8", "signature", "dep:p384"]
+secp256k1 = ["alloc", "ecdsa", "pkcs8", "sha3", "signature", "dep:k256"]
 
 [package.metadata.docs.rs]
 all-features = true
