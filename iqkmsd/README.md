@@ -56,7 +56,7 @@ licensed as above, without any additional terms or conditions.
 
 [//]: # (badges)
 
-[crate-image]: https://buildstats.info/crate/iqkmsd
+[crate-image]: https://img.shields.io/crates/v/iqkmsd?logo=rust
 [crate-link]: https://crates.io/crates/iqkmsd
 [docs-image]: https://docs.rs/iqkmsd/badge.svg
 [docs-link]: https://docs.rs/iqkmsd/

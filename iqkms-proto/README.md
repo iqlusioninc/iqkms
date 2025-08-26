@@ -50,7 +50,7 @@ licensed as above, without any additional terms or conditions.
 
 [//]: # (badges)
 
-[crate-image]: https://buildstats.info/crate/iqkms-proto
+[crate-image]: https://img.shields.io/crates/v/iqkms-proto?logo=rust
 [crate-link]: https://crates.io/crates/iqkms-proto
 [docs-image]: https://docs.rs/iqkms-proto/badge.svg
 [docs-link]: https://docs.rs/iqkms-proto/
