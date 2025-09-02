@@ -1,7 +1,7 @@
 [package]
 name = "cometbft-p2p"
 description = "Pure Rust implementation of CometBFT's encrypted P2P protocol"
-version = "0.1.0"
+version = "0.2.0-pre"
 edition = "2024"
 license = "Apache-2.0"
 repository = "https://github.com/iqlusioninc/iqkms"
