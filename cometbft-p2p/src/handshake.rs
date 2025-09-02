@@ -143,11 +143,8 @@ impl InitialState {
     /// Transitions Handshake into [`AwaitingResponse`] state.
     ///
     /// # Errors
-    /// - if protocol order was violated, e.g. handshake missing
-    /// - if challenge signing fails
-    ///
-    /// # Panics
-    /// - if Protobuf encoding of `AuthSigMessage` fails.
+    /// - if protocol order was violated, e.g. ephemeral secret missing
+    /// - if remote peer provides an insecure public key (low order point)
     pub fn got_key(
         &mut self,
         peer_ephemeral_pub_key: EphemeralPublic,
