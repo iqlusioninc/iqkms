@@ -12,18 +12,19 @@ pub(crate) type Key = [u8; 32];
 
 /// Key Derivation Function for `SecretConnection` (HKDF)
 pub(crate) struct Kdf {
-    /// Receiver's secret
+    /// Symmetric key for decrypting received messages
     recv_secret: Key,
 
-    /// Sender's secret
+    /// Symmetric key for encrypting sent messages
     send_secret: Key,
 }
 
 impl Kdf {
-    /// Returns recv secret, send secret, challenge as 32 byte arrays
+    /// Use HKDF to derive the symmetric keys for sending and receiving messages.
     ///
     /// # Panics
     /// - if the HKDF secret expansion fails
+    #[inline]
     #[must_use]
     pub fn derive_encryption_keys(shared_secret: &Key, loc_is_lo: bool) -> Self {
         let mut key_material = Zeroizing::new([0u8; size_of::<Key>() * 2]);
@@ -49,10 +50,12 @@ impl Kdf {
         }
     }
 
+    /// Symmetric encryption key to use for decrypting received messages.
     pub(crate) fn recv_secret(&self) -> &Key {
         &self.recv_secret
     }
 
+    /// Symmetric encryption key to use for encrypting sent messages.
     pub(crate) fn send_secret(&self) -> &Key {
         &self.send_secret
     }
