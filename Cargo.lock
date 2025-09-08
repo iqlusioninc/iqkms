@@ -1255,7 +1255,7 @@ dependencies = [
  "k256",
  "p256",
  "p384",
- "pkcs8 0.9.0",
+ "pkcs8 0.10.2",
  "rand_core 0.6.4",
  "sec1",
  "sha2 0.10.9",
