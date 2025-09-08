@@ -22,7 +22,7 @@ generic-array = "0.14"
 rand_core = "0.6.4"
 
 # optional dependencies
-elliptic-curve = { version = "0.12", optional = true, default-features = false }
+elliptic-curve = { version = "0.13", optional = true, default-features = false }
 ecdsa = { version = "0.14", optional = true, default-features = false, features = ["sign", "verify"] }
 k256 = { version = "0.11.6", optional = true, default-features = false, features = ["ecdsa", "pkcs8"] }
 p256 = { version = "0.11", optional = true, default-features = false, features = ["ecdsa", "pkcs8"] }
