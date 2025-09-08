@@ -18,7 +18,7 @@ signing = { package = "iqkms-signing", version = "0.0.1", path = "../iqkms-signi
 types = { package = "iqkms-types", version = "0.0.1", path = "../iqkms-types", features = ["ethereum"] }
 
 # 3rd party dependencies
-tonic = "0.8"
+tonic = "0.14"
 tower = "0.4"
 tracing = "0.1.37"
 
