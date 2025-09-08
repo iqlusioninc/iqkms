@@ -713,7 +713,7 @@ dependencies = [
  "group",
  "pkcs8 0.9.0",
  "rand_core 0.6.4",
- "sec1",
+ "sec1 0.3.0",
  "subtle",
  "zeroize",
 ]
@@ -1257,7 +1257,7 @@ dependencies = [
  "p384",
  "pkcs8 0.9.0",
  "rand_core 0.6.4",
- "sec1",
+ "sec1 0.7.3",
  "sha2 0.10.9",
  "sha3",
  "signature 1.6.4",
@@ -2165,6 +2165,19 @@ dependencies = [
  "generic-array 0.14.7",
  "pkcs8 0.9.0",
  "subtle",
+ "zeroize",
+]
+
+[[package]]
+name = "sec1"
+version = "0.7.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d3e97a565f76233a6003f9f5c54be1d9c5bdfa3eccfb189469f11ec4901c47dc"
+dependencies = [
+ "base16ct 0.2.0",
+ "der 0.7.10",
+ "generic-array 0.14.7",
+ "pkcs8 0.10.2",
  "zeroize",
 ]
 
