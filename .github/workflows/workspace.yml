@@ -16,7 +16,7 @@ jobs:
   clippy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - uses: dtolnay/rust-toolchain@1.85
         with:
           components: clippy
@@ -26,7 +26,7 @@ jobs:
   doc:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - uses: RustCrypto/actions/cargo-cache@master
       - uses: dtolnay/rust-toolchain@stable
       - run: sudo apt-get install protobuf-compiler
@@ -35,7 +35,7 @@ jobs:
   rustfmt:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - uses: dtolnay/rust-toolchain@1.85
         with:
           components: rustfmt
