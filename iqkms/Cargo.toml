@@ -20,7 +20,7 @@ proto = { package = "iqkms-proto", version = "0.0.1", path = "../iqkms-proto" }
 
 # 3rd party dependencies
 tokio = { version = "1", features = ["full"] }
-tonic = "0.8"
+tonic = "0.13"
 
 # optional dependencies
 types = { package = "iqkms-types", version = "0.0.1", optional = true, path = "../iqkms-types" }

@@ -23,5 +23,5 @@ signing = { package = "iqkms-signing", version = "0.0.1", path = "../iqkms-signi
 
 # 3rd party dependencies
 tokio = { version = "1", features = ["full"] }
-tonic = "0.8"
+tonic = "0.13"
 tower = "0.4"
